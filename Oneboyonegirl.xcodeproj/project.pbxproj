@@ -97,12 +97,9 @@
 		323426D61D8597D400A610CD /* Oneboyonegirl */ = {
 			isa = PBXGroup;
 			children = (
-				323426D71D8597D400A610CD /* AppDelegate.swift */,
 				323426D91D8597D400A610CD /* ViewController.swift */,
 				323426DB1D8597D400A610CD /* Main.storyboard */,
-				323426DE1D8597D400A610CD /* Assets.xcassets */,
-				323426E01D8597D400A610CD /* LaunchScreen.storyboard */,
-				323426E31D8597D400A610CD /* Info.plist */,
+				323427051D8597F200A610CD /* supportingFiles */,
 			);
 			path = Oneboyonegirl;
 			sourceTree = "<group>";
@@ -123,6 +120,17 @@
 				323426F91D8597D400A610CD /* Info.plist */,
 			);
 			path = OneboyonegirlUITests;
+			sourceTree = "<group>";
+		};
+		323427051D8597F200A610CD /* supportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				323426D71D8597D400A610CD /* AppDelegate.swift */,
+				323426DE1D8597D400A610CD /* Assets.xcassets */,
+				323426E01D8597D400A610CD /* LaunchScreen.storyboard */,
+				323426E31D8597D400A610CD /* Info.plist */,
+			);
+			name = supportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +201,7 @@
 				TargetAttributes = {
 					323426D31D8597D400A610CD = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = NWGF84NL9Q;
 					};
 					323426E71D8597D400A610CD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -401,7 +410,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Oneboyonegirl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.Oneboyonegirl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,7 +423,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Oneboyonegirl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.Oneboyonegirl;
 				PRODUCT_NAME = "$(TARGET_NAME)";

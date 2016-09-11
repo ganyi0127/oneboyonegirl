@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Oneboyonegirl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +18,59 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="In7-Eh-Xq4">
+                                <rect key="frame" x="20" y="180" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="In7-Eh-Xq4" secondAttribute="height" multiplier="1:1" id="mBS-pT-QSn"/>
+                                </constraints>
+                            </imageView>
+                            <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-he-SpU">
+                                <rect key="frame" x="340" y="180" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hXL-he-SpU" secondAttribute="height" multiplier="1:1" id="m9e-e7-mbc"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mH5-u0-Czw">
+                                <rect key="frame" x="430" y="20" width="150" height="30"/>
+                                <state key="normal" title="history"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWK-5E-LHd">
+                                <rect key="frame" x="150" y="542" width="300" height="50"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="start:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FSl-0w-0Lp"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UWK-5E-LHd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3bp-cl-DRG"/>
+                            <constraint firstItem="UWK-5E-LHd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/2" id="6V3-0O-rJx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UWK-5E-LHd" secondAttribute="bottom" constant="8" id="9bI-8w-9rN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mH5-u0-Czw" secondAttribute="trailing" id="B8F-mJ-zi8"/>
+                            <constraint firstItem="mH5-u0-Czw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/4" id="DI9-g1-3mv"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="In7-Eh-Xq4" secondAttribute="leading" id="H44-a7-WnU"/>
+                            <constraint firstItem="hXL-he-SpU" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2/5" id="I4n-io-FJp"/>
+                            <constraint firstItem="hXL-he-SpU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SDr-r5-NHQ"/>
+                            <constraint firstItem="UWK-5E-LHd" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1/12" id="SRk-9f-mZW"/>
+                            <constraint firstItem="In7-Eh-Xq4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aTN-k3-NFV"/>
+                            <constraint firstItem="mH5-u0-Czw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="aqd-aY-f6g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hXL-he-SpU" secondAttribute="trailing" id="ayq-1x-ce8"/>
+                            <constraint firstItem="In7-Eh-Xq4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2/5" id="c3o-rQ-1cf"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="boyImageView" destination="In7-Eh-Xq4" id="n75-WE-3Yx"/>
+                        <outlet property="girlImageView" destination="hXL-he-SpU" id="DlG-j9-lf5"/>
+                        <outlet property="historyButton" destination="mH5-u0-Czw" id="BiL-wb-YuQ"/>
+                        <outlet property="startButton" destination="UWK-5E-LHd" id="MTA-1x-cha"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="305" y="387"/>
         </scene>
     </scenes>
 </document>
