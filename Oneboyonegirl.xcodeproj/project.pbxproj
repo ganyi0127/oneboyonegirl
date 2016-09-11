@@ -14,6 +14,7 @@
 		323426E21D8597D400A610CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 323426E01D8597D400A610CD /* LaunchScreen.storyboard */; };
 		323426ED1D8597D400A610CD /* OneboyonegirlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323426EC1D8597D400A610CD /* OneboyonegirlTests.swift */; };
 		323426F81D8597D400A610CD /* OneboyonegirlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323426F71D8597D400A610CD /* OneboyonegirlUITests.swift */; };
+		32B505871D85ACAB0096F85A /* HistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B505861D85ACAB0096F85A /* HistoryTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		323426F31D8597D400A610CD /* OneboyonegirlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneboyonegirlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		323426F71D8597D400A610CD /* OneboyonegirlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneboyonegirlUITests.swift; sourceTree = "<group>"; };
 		323426F91D8597D400A610CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32B505861D85ACAB0096F85A /* HistoryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				323426D91D8597D400A610CD /* ViewController.swift */,
+				32B505861D85ACAB0096F85A /* HistoryTVC.swift */,
 				323426DB1D8597D400A610CD /* Main.storyboard */,
 				323427051D8597F200A610CD /* supportingFiles */,
 			);
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32B505871D85ACAB0096F85A /* HistoryTVC.swift in Sources */,
 				323426DA1D8597D400A610CD /* ViewController.swift in Sources */,
 				323426D81D8597D400A610CD /* AppDelegate.swift in Sources */,
 			);
@@ -497,6 +501,7 @@
 				323426FE1D8597D400A610CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		323426FF1D8597D400A610CD /* Build configuration list for PBXNativeTarget "OneboyonegirlTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +510,7 @@
 				323427011D8597D400A610CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		323427021D8597D400A610CD /* Build configuration list for PBXNativeTarget "OneboyonegirlUITests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +519,7 @@
 				323427041D8597D400A610CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

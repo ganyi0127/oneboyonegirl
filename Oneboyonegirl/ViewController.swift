@@ -14,8 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var boyImageView: UIImageView!
     @IBOutlet weak var girlImageView: UIImageView!
     @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var historyButton: UIButton!
-    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var resultLabel: UILabel!
     
     private var currentImageTag:Int?
     
@@ -210,7 +209,7 @@ class ViewController: UIViewController {
             
             print("\nratio:\(ratio)\nsex:\(sex)")
             let age = Int(ratio * 56)
-            ageLabel.text = "\(ratio) 目测年龄:\(age)"
+            resultLabel.text = "\(ratio) 目测年龄:\(age)"
         }
 
     }
