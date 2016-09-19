@@ -10,5 +10,7 @@ import UIKit
 class HistoryTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
+    
 }

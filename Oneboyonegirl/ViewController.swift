@@ -16,11 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
     
-    private var currentImageTag:Int?
+    fileprivate var currentImageTag:Int?
     
     //原图
-    private var boyImage: UIImage?
-    private var girlImage: UIImage?
+    fileprivate var boyImage: UIImage?
+    fileprivate var girlImage: UIImage?
     
     lazy var context: CIContext = {
         return CIContext(options: nil)
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         createContents()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         boyImageView.subviews.forEach(){
@@ -48,15 +48,15 @@ class ViewController: UIViewController {
         
     }
     
-    private func config(){
+    fileprivate func config(){
         
         startButton.layer.cornerRadius = startButton.frame.height / 2
         
         let strokeLayer = CAShapeLayer()
-        strokeLayer.path = UIBezierPath(rect: boyImageView.bounds).CGPath
-        strokeLayer.strokeColor = UIColor.lightGrayColor().CGColor
+        strokeLayer.path = UIBezierPath(rect: boyImageView.bounds).cgPath
+        strokeLayer.strokeColor = UIColor.lightGray.cgColor
         strokeLayer.lineWidth = 10
-        strokeLayer.fillColor = UIColor.clearColor().CGColor
+        strokeLayer.fillColor = UIColor.clear.cgColor
         boyImageView.layer.addSublayer(strokeLayer)
         
         //添加头像点击事件
@@ -65,11 +65,11 @@ class ViewController: UIViewController {
         girlImageView.addGestureRecognizer(tap)
     }
     
-    private func createContents(){
+    fileprivate func createContents(){
         
     }
     
-    func tapImage(gesture: UIGestureRecognizer){
+    func tapImage(_ gesture: UIGestureRecognizer){
         
         guard currentImageTag == nil else{
             return
@@ -77,13 +77,13 @@ class ViewController: UIViewController {
         
         currentImageTag = gesture.view?.tag
         
-        let alertController = UIAlertController(title: nil, message: "获取照片", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: "获取照片", preferredStyle: .actionSheet)
         //取消按钮
-        let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
         //相册按钮
-        let libraryAction = UIAlertAction(title: "相册", style: .Default){
+        let libraryAction = UIAlertAction(title: "相册", style: .default){
             action in
             
             self.selectPhotoFromLibrary()
@@ -91,18 +91,18 @@ class ViewController: UIViewController {
         alertController.addAction(libraryAction)
         
         //相机按钮
-        let cameraAction = UIAlertAction(title: "摄像头", style: .Default){
+        let cameraAction = UIAlertAction(title: "摄像头", style: .default){
             action in
             
             self.selectPhotoFromCamera()
         }
         alertController.addAction(cameraAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     //MARK:识别图片
-    @IBAction func start(sender: UIButton) {
+    @IBAction func start(_ sender: UIButton) {
         
         //清除之前的识别
         clearMark()
@@ -132,24 +132,24 @@ class ViewController: UIViewController {
     }
     
     //MARK:检测
-    private func recognise(withImage image:CIImage, formImageView imageView:UIImageView){
+    fileprivate func recognise(withImage image:CIImage, formImageView imageView:UIImageView){
         
         //人脸检测器
         let detector = CIDetector(ofType: CIDetectorTypeFace, context: context, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
         
         var faceFeatures: [CIFaceFeature]!
-        faceFeatures = detector.featuresInImage(image) as! [CIFaceFeature]
+        faceFeatures = detector?.features(in: image) as! [CIFaceFeature]
         
         print(faceFeatures)
         
         let inputImageSize = image.extent.size
-        var transform = CGAffineTransformIdentity
-        transform = CGAffineTransformScale(transform, 1, -1)
-        transform = CGAffineTransformTranslate(transform, 0, -inputImageSize.height)
+        var transform = CGAffineTransform.identity
+        transform = transform.scaledBy(x: 1, y: -1)
+        transform = transform.translatedBy(x: 0, y: -inputImageSize.height)
         
         //遍历所有的面部，并框出
         for faceFeature in faceFeatures {
-            var faceViewBounds = CGRectApplyAffineTransform(faceFeature.bounds, transform)
+            var faceViewBounds = faceFeature.bounds.applying(transform)
             
             // 由于检测的原图放在imageView中缩放的原因,我们还要考虑缩放比例和x,y轴偏移
             let scale = min(boyImageView.bounds.size.width / inputImageSize.width,
@@ -157,37 +157,37 @@ class ViewController: UIViewController {
             let offsetX = (boyImageView.bounds.size.width - inputImageSize.width * scale) / 2 * 0
             let offsetY = (boyImageView.bounds.size.height - inputImageSize.height * scale) / 2 * 0
             
-            faceViewBounds = CGRectApplyAffineTransform(faceViewBounds, CGAffineTransformMakeScale(scale, scale))
+            faceViewBounds = faceViewBounds.applying(CGAffineTransform(scaleX: scale, y: scale))
             faceViewBounds.origin.x += offsetX
             faceViewBounds.origin.y += offsetY
             //faceFeature.
             //每个人脸对应一个UIView方框
             let faceView = UIView(frame: faceViewBounds)
-            faceView.layer.borderColor = UIColor.orangeColor().CGColor
+            faceView.layer.borderColor = UIColor.orange.cgColor
             faceView.layer.borderWidth = 2
             imageView.addSubview(faceView)
             
             let mouthBound = CGRect(origin: faceFeature.mouthPosition, size: CGSize(width: 4, height: 4))
-            var mouthRect = CGRectApplyAffineTransform(mouthBound, transform)
-            mouthRect = CGRectApplyAffineTransform(mouthRect, CGAffineTransformMakeScale(scale, scale))
+            var mouthRect = mouthBound.applying(transform)
+            mouthRect = mouthRect.applying(CGAffineTransform(scaleX: scale, y: scale))
             let mouth = UIView(frame: mouthRect)
-            mouth.layer.borderColor = UIColor.orangeColor().CGColor
+            mouth.layer.borderColor = UIColor.orange.cgColor
             mouth.layer.borderWidth = 2
             imageView.addSubview(mouth)
             
             let leftEyeBound = CGRect(origin: faceFeature.leftEyePosition, size: CGSize(width: 4, height: 4))
-            var leftEyeRect = CGRectApplyAffineTransform(leftEyeBound, transform)
-            leftEyeRect = CGRectApplyAffineTransform(leftEyeRect, CGAffineTransformMakeScale(scale, scale))
+            var leftEyeRect = leftEyeBound.applying(transform)
+            leftEyeRect = leftEyeRect.applying(CGAffineTransform(scaleX: scale, y: scale))
             let leftEye = UIView(frame: leftEyeRect)
-            leftEye.layer.borderColor = UIColor.orangeColor().CGColor
+            leftEye.layer.borderColor = UIColor.orange.cgColor
             leftEye.layer.borderWidth = 2
             imageView.addSubview(leftEye)
             
             let rightEyeBound = CGRect(origin: faceFeature.rightEyePosition, size: CGSize(width: 4, height: 4))
-            var rightEyeRect = CGRectApplyAffineTransform(rightEyeBound, transform)
-            rightEyeRect = CGRectApplyAffineTransform(rightEyeRect, CGAffineTransformMakeScale(scale, scale))
+            var rightEyeRect = rightEyeBound.applying(transform)
+            rightEyeRect = rightEyeRect.applying(CGAffineTransform(scaleX: scale, y: scale))
             let rightEye = UIView(frame: rightEyeRect)
-            rightEye.layer.borderColor = UIColor.orangeColor().CGColor
+            rightEye.layer.borderColor = UIColor.orange.cgColor
             rightEye.layer.borderWidth = 2
             imageView.addSubview(rightEye)
             
@@ -215,7 +215,7 @@ class ViewController: UIViewController {
     }
     
     //MARK:清楚标记
-    private func clearMark(){
+    fileprivate func clearMark(){
         
         boyImageView.subviews.forEach(){
             view in
@@ -229,63 +229,63 @@ class ViewController: UIViewController {
     }
     
     //MARK:从相机中拍摄照片
-    private func selectPhotoFromCamera(){
+    fileprivate func selectPhotoFromCamera(){
         
-        guard UIImagePickerController.isSourceTypeAvailable(.Camera) else{
-            let alertController = UIAlertController(title: "选择照片", message: "获取相册图片失效", preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else{
+            let alertController = UIAlertController(title: "选择照片", message: "获取相册图片失效", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "我知道了", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return
         }
         
         let cameraPicker = UIImagePickerController()
         cameraPicker.delegate = self
-        cameraPicker.sourceType = UIImagePickerControllerSourceType.Camera
-        cameraPicker.modalPresentationStyle = .CurrentContext
+        cameraPicker.sourceType = UIImagePickerControllerSourceType.camera
+        cameraPicker.modalPresentationStyle = .currentContext
         cameraPicker.allowsEditing = true
         cameraPicker.showsCameraControls = true
-        cameraPicker.cameraDevice = .Rear
-        presentViewController(cameraPicker, animated: true, completion: nil)
+        cameraPicker.cameraDevice = .rear
+        present(cameraPicker, animated: true, completion: nil)
     }
     
     //MARK:从相册中获取图片
-    private func selectPhotoFromLibrary(){
+    fileprivate func selectPhotoFromLibrary(){
         
-        guard UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) else{
-            let alertController = UIAlertController(title: "选择照片", message: "获取图片失效", preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: "我知道了", style: .Cancel, handler: nil)
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else{
+            let alertController = UIAlertController(title: "选择照片", message: "获取图片失效", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "我知道了", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return
         }
         
         let libraryPicker = UIImagePickerController()
         libraryPicker.delegate = self
-        libraryPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        libraryPicker.modalPresentationStyle = .CurrentContext
+        libraryPicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        libraryPicker.modalPresentationStyle = .currentContext
         libraryPicker.allowsEditing = true
-        presentViewController(libraryPicker, animated: true, completion: nil)
+        present(libraryPicker, animated: true, completion: nil)
     }
 }
 
 //MARK:照片库delegate
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         boyImage = image
         if let tag = currentImageTag{
             if tag == 0{
-                boyImageView.layer.contents = image.CGImage
+                boyImageView.layer.contents = image.cgImage
             }else{
-                girlImageView.layer.contents = image.CGImage
+                girlImageView.layer.contents = image.cgImage
             }
             currentImageTag = nil
         }
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
