@@ -10,5 +10,16 @@ import UIKit
 class HistoryCell: UITableViewCell {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
+        
+        config()
+        createContents()
+    }
+    
+    private func config(){
+        
+    }
+    
+    private func createContents(){
+        
     }
 }

@@ -11,6 +11,16 @@ class HistoryTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        config()
+        createContents()
+    }
+    
+    private func config(){
+        
+    }
+    
+    private func createContents(){
+        
     }
     
 }

@@ -10,21 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //图片view
+    //result_data
+    struct Data {
+        var ratio1:CGFloat?
+        var ratio2:CGFloat?
+    }
+    
+    //boy|girl_image_view
     @IBOutlet weak var boyImageView: UIImageView!
     @IBOutlet weak var girlImageView: UIImageView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
     
+    //mark_tag_boy|girl
     fileprivate var currentImageTag:Int?
     
-    //原图
+    //origin_uiimage
     fileprivate var boyImage: UIImage?
     fileprivate var girlImage: UIImage?
     
-    lazy var context: CIContext = {
+    //context
+    lazy fileprivate let context: CIContext = {
         return CIContext(options: nil)
     }()
+    
+    //CIDetector_once
+    lazy fileprivate let detector:CIDetector = {
+        return CIDetector(ofType: CIDetectorTypeFace, context: context, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+    }
     
     //---------------------------------------------------------------------------
     override func viewDidLoad() {
@@ -101,7 +114,7 @@ class ViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    //MARK:识别图片
+    //MARK:pair_boy_girl
     @IBAction func start(_ sender: UIButton) {
         
         //清除之前的识别
@@ -127,19 +140,18 @@ class ViewController: UIViewController {
             return
         }
         
-        recognise(withImage: _boyInputImage, formImageView: boyImageView)
-        recognise(withImage: _girlInputImage, formImageView: girlImageView)
+        guard let boyData = recognise(withImage: _boyInputImage, formImageView: boyImageView), let girlData = recognise(withImage: _girlInputImage, formImageView: girlImageView) else {
+            return
+        }
+        
+        print("boyData:\(boyData)\ngirlData:\(girlData)")
     }
     
-    //MARK:检测
-    fileprivate func recognise(withImage image:CIImage, formImageView imageView:UIImageView){
+    //MARK:recognise_photo
+    private func recognise(withImage image:CIImage, formImageView imageView:UIImageView) -> Data?{
         
-        //人脸检测器
-        let detector = CIDetector(ofType: CIDetectorTypeFace, context: context, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        
-        var faceFeatures: [CIFaceFeature]!
-        faceFeatures = detector?.features(in: image) as! [CIFaceFeature]
-        
+        let faceFeatures = detector.features(in: image) as! [CIFaceFeature]
+
         print(faceFeatures)
         
         let inputImageSize = image.extent.size
@@ -147,53 +159,24 @@ class ViewController: UIViewController {
         transform = transform.scaledBy(x: 1, y: -1)
         transform = transform.translatedBy(x: 0, y: -inputImageSize.height)
         
-        //遍历所有的面部，并框出
-        for faceFeature in faceFeatures {
+        //遍历所有的面部
+        faceFeatures.forEach(){
+            faceFeature in
+
             var faceViewBounds = faceFeature.bounds.applying(transform)
-            
-            // 由于检测的原图放在imageView中缩放的原因,我们还要考虑缩放比例和x,y轴偏移
+
             let scale = min(boyImageView.bounds.size.width / inputImageSize.width,
                             boyImageView.bounds.size.height / inputImageSize.height)
-            let offsetX = (boyImageView.bounds.size.width - inputImageSize.width * scale) / 2 * 0
-            let offsetY = (boyImageView.bounds.size.height - inputImageSize.height * scale) / 2 * 0
-            
+         
             faceViewBounds = faceViewBounds.applying(CGAffineTransform(scaleX: scale, y: scale))
-            faceViewBounds.origin.x += offsetX
-            faceViewBounds.origin.y += offsetY
-            //faceFeature.
+
             //每个人脸对应一个UIView方框
             let faceView = UIView(frame: faceViewBounds)
             faceView.layer.borderColor = UIColor.orange.cgColor
             faceView.layer.borderWidth = 2
             imageView.addSubview(faceView)
             
-            let mouthBound = CGRect(origin: faceFeature.mouthPosition, size: CGSize(width: 4, height: 4))
-            var mouthRect = mouthBound.applying(transform)
-            mouthRect = mouthRect.applying(CGAffineTransform(scaleX: scale, y: scale))
-            let mouth = UIView(frame: mouthRect)
-            mouth.layer.borderColor = UIColor.orange.cgColor
-            mouth.layer.borderWidth = 2
-            imageView.addSubview(mouth)
-            
-            let leftEyeBound = CGRect(origin: faceFeature.leftEyePosition, size: CGSize(width: 4, height: 4))
-            var leftEyeRect = leftEyeBound.applying(transform)
-            leftEyeRect = leftEyeRect.applying(CGAffineTransform(scaleX: scale, y: scale))
-            let leftEye = UIView(frame: leftEyeRect)
-            leftEye.layer.borderColor = UIColor.orange.cgColor
-            leftEye.layer.borderWidth = 2
-            imageView.addSubview(leftEye)
-            
-            let rightEyeBound = CGRect(origin: faceFeature.rightEyePosition, size: CGSize(width: 4, height: 4))
-            var rightEyeRect = rightEyeBound.applying(transform)
-            rightEyeRect = rightEyeRect.applying(CGAffineTransform(scaleX: scale, y: scale))
-            let rightEye = UIView(frame: rightEyeRect)
-            rightEye.layer.borderColor = UIColor.orange.cgColor
-            rightEye.layer.borderWidth = 2
-            imageView.addSubview(rightEye)
-            
-            print("\nfaceFeature:\(faceFeature):\(faceFeature.bounds)\nmouth:\(faceFeature.hasMouthPosition):\(faceFeature.mouthPosition)\nleftEye:\(faceFeature.hasLeftEyePosition):\(faceFeature.leftEyePosition)\nrightEye:\(faceFeature.hasRightEyePosition):\(faceFeature.rightEyePosition)")
-            
-            //以下为垃圾算法
+            //傻傻地计算
             let leftEyePosition = faceFeature.leftEyePosition
             let rightEyePosition = faceFeature.rightEyePosition
             let mouthPosition = faceFeature.mouthPosition
@@ -203,19 +186,17 @@ class ViewController: UIViewController {
             let mouthRightDistance = sqrt(pow(mouthPosition.x - rightEyePosition.x, 2) + pow(mouthPosition.y - rightEyePosition.y, 2))
             let averageMouthDistance = (mouthLeftDistance + mouthRightDistance) / 2
             
-            let ratio = eyesDistance / faceFeature.bounds.height
+            var data = Data()
+            data.ratio1 = eyesDistance / averageMouthDistance
+            data.ratio2 = eyesDistance / faceViewBounds.width
             
-            let sex = averageMouthDistance > eyesDistance ? "女" : "男"
-            
-            print("\nratio:\(ratio)\nsex:\(sex)")
-            let age = Int(ratio * 56)
-            resultLabel.text = "\(ratio) 目测年龄:\(age)"
+            return data
         }
-
+        return nil
     }
     
     //MARK:清楚标记
-    fileprivate func clearMark(){
+    private func clearMark(){
         
         boyImageView.subviews.forEach(){
             view in
@@ -229,7 +210,7 @@ class ViewController: UIViewController {
     }
     
     //MARK:从相机中拍摄照片
-    fileprivate func selectPhotoFromCamera(){
+    private func selectPhotoFromCamera(){
         
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else{
             let alertController = UIAlertController(title: "选择照片", message: "获取相册图片失效", preferredStyle: .alert)
@@ -250,7 +231,7 @@ class ViewController: UIViewController {
     }
     
     //MARK:从相册中获取图片
-    fileprivate func selectPhotoFromLibrary(){
+    private func selectPhotoFromLibrary(){
         
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else{
             let alertController = UIAlertController(title: "选择照片", message: "获取图片失效", preferredStyle: .alert)
@@ -271,18 +252,22 @@ class ViewController: UIViewController {
 
 //MARK:照片库delegate
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        boyImage = image
+    fileprivate let myRate:Int = 1
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
         if let tag = currentImageTag{
-            if tag == 0{
-                boyImageView.layer.contents = image.cgImage
+            if tag == 1{
+                boyImage = info[UIImagePickerControllerEditedImage] as? UIImage
+                boyImageView.layer.contents = boyImage?.cgImage
             }else{
-                girlImageView.layer.contents = image.cgImage
+                girlImage = info[UIImagePickerControllerEditedImage] as? UIImage
+                girlImageView.layer.contents = girlImage?.cgImage
             }
             currentImageTag = nil
+       
         }
-        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

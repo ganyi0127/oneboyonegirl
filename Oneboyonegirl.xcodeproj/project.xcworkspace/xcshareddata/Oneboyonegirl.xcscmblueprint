@@ -4,27 +4,27 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "60154674589A839113548E6CA5F06D491810DFCE" : 0,
+    "E9CDAD31FBE564EB5D84C2311B85DDB8D080DE94" : 9223372036854775807,
     "D92DED4E21654028ABF817342413C231FA4B8DB1" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BAB3B2AA-BA32-4FEA-B74D-6868A6587DFB",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "60154674589A839113548E6CA5F06D491810DFCE" : "",
-    "D92DED4E21654028ABF817342413C231FA4B8DB1" : "Oneboyonegirl\/"
+    "E9CDAD31FBE564EB5D84C2311B85DDB8D080DE94" : "",
+    "D92DED4E21654028ABF817342413C231FA4B8DB1" : "oneboyonegirl\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Oneboyonegirl",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Oneboyonegirl.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https\/\/github.com\/ganyi0127\/forone.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "60154674589A839113548E6CA5F06D491810DFCE"
-    },
-    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ganyi0127\/oneboyonegirl.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D92DED4E21654028ABF817342413C231FA4B8DB1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https\/\/github.com\/ganyi0127\/forone.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E9CDAD31FBE564EB5D84C2311B85DDB8D080DE94"
     }
   ]
 }
