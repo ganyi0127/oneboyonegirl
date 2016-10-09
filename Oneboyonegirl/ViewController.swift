@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var boyImageView: UIImageView!
     @IBOutlet weak var girlImageView: UIImageView!
     @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var resultLabel: UILabel!
     
     //mark_tag_boy|girl
     fileprivate var currentImageTag:Int?

@@ -36,48 +36,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="In7-Eh-Xq4">
+                            <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boy.png" translatesAutoresizingMaskIntoConstraints="NO" id="In7-Eh-Xq4">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="In7-Eh-Xq4" secondAttribute="height" multiplier="1:1" id="mBS-pT-QSn"/>
                                 </constraints>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-he-SpU">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl.png" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-he-SpU">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hXL-he-SpU" secondAttribute="height" multiplier="1:1" id="m9e-e7-mbc"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWK-5E-LHd">
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Start"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWK-5E-LHd">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UWK-5E-LHd" secondAttribute="height" multiplier="1.2:1" id="NLr-8u-k2e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".PingFangSC-Regular" family=".PingFang SC" pointSize="18"/>
+                                <state key="normal" title="评分" image="button_heart.png"/>
                                 <connections>
                                     <action selector="start:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FSl-0w-0Lp"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRZ-z6-qkW">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="hXL-he-SpU" secondAttribute="leading" id="1sJ-64-VMg"/>
                             <constraint firstItem="UWK-5E-LHd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3bp-cl-DRG"/>
-                            <constraint firstItem="UWK-5E-LHd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/2" id="6V3-0O-rJx"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UWK-5E-LHd" secondAttribute="bottom" constant="8" id="9bI-8w-9rN"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="In7-Eh-Xq4" secondAttribute="leading" id="H44-a7-WnU"/>
+                            <constraint firstItem="UWK-5E-LHd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/3" id="6V3-0O-rJx"/>
                             <constraint firstItem="hXL-he-SpU" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2/5" id="I4n-io-FJp"/>
-                            <constraint firstItem="hXL-he-SpU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SDr-r5-NHQ"/>
-                            <constraint firstItem="UWK-5E-LHd" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1/12" id="SRk-9f-mZW"/>
-                            <constraint firstItem="iRZ-z6-qkW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zz3-dr-wMr"/>
-                            <constraint firstItem="In7-Eh-Xq4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aTN-k3-NFV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hXL-he-SpU" secondAttribute="trailing" id="ayq-1x-ce8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="In7-Eh-Xq4" secondAttribute="trailing" id="PAI-Lv-hQe"/>
+                            <constraint firstItem="UWK-5E-LHd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Y9Q-NH-wHy"/>
+                            <constraint firstItem="hXL-he-SpU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="YBq-wf-L87"/>
                             <constraint firstItem="In7-Eh-Xq4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2/5" id="c3o-rQ-1cf"/>
-                            <constraint firstItem="iRZ-z6-qkW" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="j1W-l1-bYr"/>
-                            <constraint firstItem="UWK-5E-LHd" firstAttribute="top" secondItem="iRZ-z6-qkW" secondAttribute="bottom" constant="8" id="wk1-LK-Po6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="In7-Eh-Xq4" secondAttribute="bottom" constant="20" id="iDe-Qo-v7k"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XI0-7F-cZL">
-                        <barButtonItem key="rightBarButtonItem" title="history" id="1AU-L1-X8N">
+                        <barButtonItem key="rightBarButtonItem" image="icon_history.png" id="1AU-L1-X8N">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="0.51150323275862064" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="b18-yL-eep" kind="show" id="4y2-Oo-y99"/>
                             </connections>
@@ -86,13 +81,12 @@
                     <connections>
                         <outlet property="boyImageView" destination="In7-Eh-Xq4" id="n75-WE-3Yx"/>
                         <outlet property="girlImageView" destination="hXL-he-SpU" id="DlG-j9-lf5"/>
-                        <outlet property="resultLabel" destination="iRZ-z6-qkW" id="5h3-a4-U2W"/>
                         <outlet property="startButton" destination="UWK-5E-LHd" id="MTA-1x-cha"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="387"/>
+            <point key="canvasLocation" x="304.80000000000001" y="386.35682158920542"/>
         </scene>
         <!--HistoryTVC-->
         <scene sceneID="8EG-aC-EF4">
@@ -123,4 +117,10 @@
             <point key="canvasLocation" x="1015.9420289855074" y="386.41304347826087"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="boy.png" width="153" height="153"/>
+        <image name="button_heart.png" width="1408" height="1257"/>
+        <image name="girl.png" width="153" height="153"/>
+        <image name="icon_history.png" width="40" height="40"/>
+    </resources>
 </document>
