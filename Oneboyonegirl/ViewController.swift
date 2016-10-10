@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 class ViewController: UIViewController {
     
     //result_data
@@ -37,6 +37,26 @@ class ViewController: UIViewController {
     lazy fileprivate let detector:CIDetector = {
         return CIDetector(ofType: CIDetectorTypeFace, context: context, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
     }
+    
+    //CoreData
+    private var manageObjectModel: NSManagedObjectModel?
+    private lazy var manageObjectContext: NSManagedObjectContext = {
+        let coordinator = {
+            () -> NSPersistentStoreCoordinator in
+
+//            58     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+//                59         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//                60         abort();
+//                61     }
+//            62
+//            63     return _persistentStoreCoordinator;
+            let documentPaths = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)
+            let storeURL = documentPaths.last?.appendingPathComponent("user.sqlite")
+
+            let coordinator = NSPersistentStoreCoordinator(managedObjectModel: manageObjectModel)
+            coordinator.addPersistentStoreWithType
+        }()
+    }()
     
     //---------------------------------------------------------------------------
     override func viewDidLoad() {
@@ -144,6 +164,8 @@ class ViewController: UIViewController {
         }
         
         print("boyData:\(boyData)\ngirlData:\(girlData)")
+        
+        //显示结果与写入缓存
     }
     
     //MARK:recognise_photo

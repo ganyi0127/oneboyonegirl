@@ -60,6 +60,10 @@
 		BE743BD91DA8F9F6002AC282 /* property_2_1.png in Resources */ = {isa = PBXBuildFile; fileRef = BE743BAE1DA8F9F6002AC282 /* property_2_1.png */; };
 		BE743BDA1DA8F9F6002AC282 /* sign.png in Resources */ = {isa = PBXBuildFile; fileRef = BE743BAF1DA8F9F6002AC282 /* sign.png */; };
 		BE743BDE1DA9DE37002AC282 /* icon_history.png in Resources */ = {isa = PBXBuildFile; fileRef = BE743BDD1DA9DE37002AC282 /* icon_history.png */; };
+		BE743BE31DAB47DB002AC282 /* HistoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE743BE11DAB47DB002AC282 /* HistoryModel.xcdatamodeld */; };
+		BE743BE81DAB4AC5002AC282 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE743BE71DAB4AC5002AC282 /* CoreData.framework */; };
+		BE743BEB1DAB4B33002AC282 /* Users+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE743BE91DAB4B33002AC282 /* Users+CoreDataClass.swift */; };
+		BE743BEC1DAB4B33002AC282 /* Users+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE743BEA1DAB4B33002AC282 /* Users+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +143,10 @@
 		BE743BAE1DA8F9F6002AC282 /* property_2_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = property_2_1.png; sourceTree = "<group>"; };
 		BE743BAF1DA8F9F6002AC282 /* sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign.png; sourceTree = "<group>"; };
 		BE743BDD1DA9DE37002AC282 /* icon_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_history.png; sourceTree = "<group>"; };
+		BE743BE21DAB47DB002AC282 /* HistoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryModel.xcdatamodel; sourceTree = "<group>"; };
+		BE743BE71DAB4AC5002AC282 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BE743BE91DAB4B33002AC282 /* Users+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Users+CoreDataClass.swift"; path = "../Users+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BE743BEA1DAB4B33002AC282 /* Users+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Users+CoreDataProperties.swift"; path = "../Users+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE743BE81DAB4AC5002AC282 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +182,7 @@
 				323426EB1D8597D400A610CD /* OneboyonegirlTests */,
 				323426F61D8597D400A610CD /* OneboyonegirlUITests */,
 				323426D51D8597D400A610CD /* Products */,
+				BE743BE61DAB4AC4002AC282 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +203,9 @@
 				32B505861D85ACAB0096F85A /* HistoryTVC.swift */,
 				3270126F1D8EEA5D00AF55E7 /* HistoryCell.swift */,
 				323426DB1D8597D400A610CD /* Main.storyboard */,
+				BE743BE11DAB47DB002AC282 /* HistoryModel.xcdatamodeld */,
+				BE743BE91DAB4B33002AC282 /* Users+CoreDataClass.swift */,
+				BE743BEA1DAB4B33002AC282 /* Users+CoreDataProperties.swift */,
 				BE743B7F1DA8F9F6002AC282 /* resours */,
 				323427051D8597F200A610CD /* supportingFiles */,
 			);
@@ -317,6 +330,14 @@
 				BE743BAE1DA8F9F6002AC282 /* property_2_1.png */,
 			);
 			path = property;
+			sourceTree = "<group>";
+		};
+		BE743BE61DAB4AC4002AC282 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE743BE71DAB4AC5002AC282 /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,6 +521,9 @@
 			files = (
 				32B505871D85ACAB0096F85A /* HistoryTVC.swift in Sources */,
 				323426DA1D8597D400A610CD /* ViewController.swift in Sources */,
+				BE743BEB1DAB4B33002AC282 /* Users+CoreDataClass.swift in Sources */,
+				BE743BE31DAB47DB002AC282 /* HistoryModel.xcdatamodeld in Sources */,
+				BE743BEC1DAB4B33002AC282 /* Users+CoreDataProperties.swift in Sources */,
 				327012701D8EEA5D00AF55E7 /* HistoryCell.swift in Sources */,
 				323426D81D8597D400A610CD /* AppDelegate.swift in Sources */,
 			);
@@ -771,6 +795,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BE743BE11DAB47DB002AC282 /* HistoryModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BE743BE21DAB47DB002AC282 /* HistoryModel.xcdatamodel */,
+			);
+			currentVersion = BE743BE21DAB47DB002AC282 /* HistoryModel.xcdatamodel */;
+			path = HistoryModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 323426CC1D8597D300A610CD /* Project object */;
 }
